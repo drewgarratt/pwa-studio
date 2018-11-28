@@ -24,18 +24,6 @@ test('getCountries thunk returns undefined', async () => {
     await expect(thunk(...thunkArgs)).resolves.toBeUndefined();
 });
 
-test('getCountries thunk does nothing if data is present', async () => {
-    getState.mockImplementationOnce(() => ({
-        directory: {
-            countries: []
-        }
-    }));
-
-    await getCountries()(...thunkArgs);
-
-    expect(request).not.toHaveBeenCalled();
-});
-
 test('getCountries thunk requests API data', async () => {
     await getCountries()(...thunkArgs);
 

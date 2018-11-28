@@ -124,9 +124,8 @@ test('submitInput thunk dispatches actions on success', async () => {
 
     expect(dispatch).toHaveBeenNthCalledWith(1, actions.input.submit(payload));
     expect(dispatch).toHaveBeenNthCalledWith(2, expect.any(Function));
-    expect(dispatch).toHaveBeenNthCalledWith(3, expect.any(Function));
-    expect(dispatch).toHaveBeenNthCalledWith(4, actions.input.accept(response));
-    expect(dispatch).toHaveBeenCalledTimes(4);
+    expect(dispatch).toHaveBeenNthCalledWith(3, actions.input.accept(response));
+    expect(dispatch).toHaveBeenCalledTimes(3);
 });
 
 test('submitInput thunk dispatches actions on failure', async () => {
@@ -137,9 +136,8 @@ test('submitInput thunk dispatches actions on failure', async () => {
     await submitInput(payload)(...thunkArgs);
 
     expect(dispatch).toHaveBeenNthCalledWith(1, actions.input.submit(payload));
-    expect(dispatch).toHaveBeenNthCalledWith(2, expect.any(Function));
-    expect(dispatch).toHaveBeenNthCalledWith(3, actions.input.reject(error));
-    expect(dispatch).toHaveBeenCalledTimes(3);
+    expect(dispatch).toHaveBeenNthCalledWith(2, actions.input.reject(error));
+    expect(dispatch).toHaveBeenCalledTimes(2);
 });
 
 test('submitInput thunk throws if there is no guest cart', async () => {
@@ -160,8 +158,7 @@ test('submitInput thunk throws if payload is invalid', async () => {
 
     await expect(submitInput(payload)(...thunkArgs)).rejects.toThrow();
     expect(dispatch).toHaveBeenNthCalledWith(1, actions.input.submit(payload));
-    expect(dispatch).toHaveBeenNthCalledWith(2, expect.any(Function));
-    expect(dispatch).toHaveBeenCalledTimes(2);
+    expect(dispatch).toHaveBeenCalledTimes(1);
 });
 
 test('submitOrder() returns a thunk', () => {
